@@ -26,6 +26,14 @@ export const menus = {
 			items: null,
 			path: '/user-info',
 			label: 'Old'
+		},
+		{
+			action: 'ti-user',
+			title: 'message.groups',
+			active: false,
+			items: null,
+			path: '/group',
+			label: 'Old'
 		}
 	],
 

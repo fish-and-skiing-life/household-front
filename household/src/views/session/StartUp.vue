@@ -59,9 +59,9 @@ export default {
     create(){
       if (this.$refs.form.validate()) {
           axios
-            .patch(process.env.VUE_APP_API_ENDPOINT + "/api/v1/name_update" ,{name: this.form.name, id: this.userId}, {headers: {'Authorization': 'Bearer ' + this.idToken}})
+            .patch(process.env.VUE_APP_API_ENDPOINT + "/api/v1/name_update" ,{name: this.form.name}, {headers: {'Authorization': 'Bearer ' + this.idToken}})
             .then(response => { 
-                console.log(this.response)
+                console.log(response)
                 // this.$store.commit('org/setProfile', response.data.org.profile)
                 // this.$store.dispatch("org/fetchOrg", this.idToken)
                 // localStorage.setItem("domain", this.form.domain);

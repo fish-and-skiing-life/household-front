@@ -446,7 +446,7 @@ export default {
     directional: '方向性',
     mapAliases: 'マップ（エイリアス）',
     dateAndTime: '日時',
-    groups: "グループ",
+    groups: "グループ設定",
     buttonGroups: "ボタングループ",
     itemGroups: "アイテムグループ",
     windows: "Windows",

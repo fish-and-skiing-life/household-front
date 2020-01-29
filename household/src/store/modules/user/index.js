@@ -3,11 +3,10 @@
  */
 import axios from 'axios';
 const state = {
-    domain: "",
+    name: "",
+    sub: "",
     plan: "",
     idToken: "",
-    email: "",
-    name: "",
     expireAt: "",
     groupInfo: "",
     isAuthenticated: false,
@@ -23,9 +22,8 @@ const actions = {
     await axios
       .get(process.env.VUE_APP_API + "/api/v1/check", {headers: {'Authorization': 'Bearer ' + id_token}})
       .then(response => { 
-        console.log('this is  fetch', response.data)
         if( response.data.name != 'none'){
-            state.commit('setName', response.data.name)
+            state.commit('setUser', response.data)
         }
       }).catch(error => {
         console.log(error)
@@ -33,8 +31,9 @@ const actions = {
     }
 }
 const mutations = {
-    setDomain(state, domain ) {
-        state.domain = domain
+    setUser(state, user ) {
+        state.name = user.name
+        state.sub = user.sub
     },
     setIdToken(state, token) {
         state.idToken = token

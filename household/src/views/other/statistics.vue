@@ -123,43 +123,51 @@ export default {
       })
   },
   methods: {
-    formatDetailInfo(households){
-      this.detailLabels = []
-      this.detailCharData = []
+    formatDetailInfo(households, started_at, ended_at, type){
+      var detailLabels = []
+      var detailCharData = []
 
-      var diff = moment(this.storeImpactReport.ended_at).diff(this.storeImpactReport.started_at, 'months')
+      var diff = moment(ended_at).diff(started_at, type)
       var created_dict = {}
-      var months = 0
+      var period = 0
       var all = 0
-      for(let k of Object.keys(beneficiaries)) {
-        var key = moment(beneficiaries[k].created_at).format('YYYY-M')
+      for(let k of Object.keys(households)) {
+        var key = moment(households[k].buy_at).format('YYYY-M')
         if(created_dict[key]){
           created_dict[key] += 1
         }else{
           created_dict[key] = 1
         }
       }
-      while( months < diff){
-        var now = moment(this.storeImpactReport.started_at).add(months, 'month')
-        var month = moment(this.storeImpactReport.started_at).add(months, 'month').format('YYYY-M')
-        this.labels.push(now.format('YYYY-MM'))
-        if(created_dict[month]){
-          all += created_dict[month]
-          if (this.before_date(month)) {
+      while( period < diff){
+        var now = ""
+        var target = ""
+        if(type = 'months'){
+          now = moment(started_at).add(period, 'day')
+          target = moment(started_at).add(period, 'day').format('YYYY-MM-DD')
+          detailLabels.push(now.format('YYYY-MM-DD'))
+        }else{
+          now = moment(started_at).add(period, 'month')
+          target = moment(started_at).add(period, 'month').format('YYYY-MM')
+          detailLabels.push(now.format('YYYY-MM'))
+        }
+        if(created_dict[target]){
+          all += created_dict[target]
+          if (this.before_date(target)) {
             this.charData.push(all)
             this.afterCharData.push(0)
           }else{
             this.afterCharData.push(all)
           }     
         }else{
-          if (this.before_date(month)) {
+          if (this.before_date(target)) {
             this.charData.push(all)
             this.afterCharData.push(0)
           }else{
             this.afterCharData.push(all)
           } 
         }
-        months += 1
+        period += 1
       }
     },
     changeMonth(){

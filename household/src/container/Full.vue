@@ -15,7 +15,6 @@
 				</transition>
 			</v-content>
 			<!-- User Tour -->
-			<tour></tour>
 		</template>
 	</div>
 </template>
@@ -24,7 +23,7 @@
 import { mapGetters } from "vuex";
 import Header from "Components/Header/Header.vue";
 import Customizer from "Components/Customizer/Customizer";
-import Tour from "Components/Tour/Tour";
+
 import AppConfig from "Constants/AppConfig";
 import _ from 'lodash'
 
@@ -37,7 +36,6 @@ export default {
   components: {
     appHeader: Header,
     appCustomizer: Customizer,
-    Tour
   },
   computed: {
     ...mapGetters(["selectedRouterAnimation"])
