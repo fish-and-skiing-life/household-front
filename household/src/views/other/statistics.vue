@@ -89,6 +89,7 @@ export default {
       target_year: moment().format('YYYY')
     };
   },
+  
   mounted: function() {
     axios
     .get(process.env.VUE_APP_API_ENDPOINT + "/api/v1/users/" + this.userId + "/expense", {headers: {'Authorization': 'Bearer ' + this.idToken}})

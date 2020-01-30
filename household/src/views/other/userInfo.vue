@@ -37,12 +37,6 @@
               <v-flex xs12 sm8 >
                 <v-text-field label="名前" v-model="user.name" :rules="form.industryRules" required></v-text-field>
               </v-flex>
-              <v-flex xs12 sm4>
-                <span class=" pt-4 pr-4 d-block grey--text text-right">グループトークン</span>
-              </v-flex>
-              <v-flex xs12 sm8 >
-                <v-text-field label="トークン" v-model="user.password"></v-text-field>
-              </v-flex>
             </v-layout>
           </v-form>
         </v-card-text>
@@ -101,19 +95,19 @@ export default {
     updateUser() {
       if (this.$refs.form.validate()) {
         var idToken = localStorage.getItem("idToken")
-        var regist = {name: this.user.name, group_id: this.user.group_id, sub: this.user.sub}
+        var regist = {name: this.user.name, sub: this.user.sub}
         axios
           .patch(process.env.VUE_APP_API + "/api/v1/users/" + this.userId , regist, {headers: {'Authorization': 'Bearer ' + idToken}})
           .then(response => {
               alert(this.user.name + "さんの更新に成功しました")
               this.createUserModalHide() 
+              location.reload();
           }).catch(error => {
           })
       };
     },
     userModalShow(item) {
         this.mode = "edit"
-        console.log(item)
         this.user = Object.assign({},item)
         this.createUserModal = true
     },
@@ -126,7 +120,6 @@ export default {
     axios
       .get(process.env.VUE_APP_API + "/api/v1/users/" + this.userId, {headers: {'Authorization': 'Bearer ' + idToken}})
       .then(response => {
-          console.log(response)
           this.tableData.push(response.data)
       }).catch(error => {
           console.log(error)

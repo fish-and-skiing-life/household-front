@@ -94,7 +94,6 @@ export default {
     axios
     .get(process.env.VUE_APP_API_ENDPOINT + "/api/v1/users/" + this.userId + "/household/" + this.hId, {headers: {'Authorization': 'Bearer ' + this.idToken}})
     .then(response => {
-      console.log(response.data)
       this.household.push(response.data)
     }).catch(error => {
       console.log(error)
