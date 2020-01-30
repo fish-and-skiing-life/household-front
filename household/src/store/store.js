@@ -4,7 +4,6 @@ import Vuex from 'vuex'
 // modules
 import auth from './modules/auth';
 import settings from './modules/settings';
-import ecommerce from './modules/ecommerce';
 import user from './modules/user';
 import sidebar from './modules/sidebar';
 
@@ -14,7 +13,6 @@ export const store = new Vuex.Store({
     modules: {
         auth,
         settings,
-        ecommerce,
         user: user,
         sidebar,
     },

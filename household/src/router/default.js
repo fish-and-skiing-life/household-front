@@ -3,7 +3,6 @@ import Full from 'Container/Full'
 // dashboard components
 const Ecommerce = () => import('Views/dashboard/Ecommerce');
 const setting = () => import('Views/setting');
-const invoices = () => import('Views/invoices');
 
 
 export default {
@@ -24,14 +23,6 @@ export default {
          path: 'setting',
          name: "setting",
          components: {default: setting },
-         meta: {
-            requiresAuth: true
-         }
-      },
-      {
-         path: 'invoices',
-         name: "invoices",
-         components: {default: invoices },
          meta: {
             requiresAuth: true
          }

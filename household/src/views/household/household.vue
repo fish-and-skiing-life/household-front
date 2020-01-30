@@ -21,10 +21,10 @@
                   <td class="text-xs-left" v-if="props.item.description != ''">{{ props.item.description }}</td>
                   <td class="text-xs-left" v-else>未記入</td>
                   <td class="text-xs-left " >
-                  <button class="text-red" @click="showDeleteModal(props.item)">
-                    <v-icon left class="error--text font-sm">close</v-icon>
-                  </button>
-                </td>
+                    <button class="text-red" @click="showDeleteModal(props.item)">
+                      <v-icon left class="error--text font-sm">close</v-icon>
+                    </button>
+                  </td>
                 </tr>
               </template>
             </v-data-table>

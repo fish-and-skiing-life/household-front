@@ -1,24 +1,33 @@
-
 <template>
-  <div>
-    <v-container fluid pt-0 grid-list-xl>
-      <div v-if="!authenticated">
-          <a href="#" @click.prevent="signinWithAuth0">Login</a>
+  <div class="session-wrapper">
+    <div class="pt-80 text-xs-center">
+      <div class="session-table-cell">
+        <div class="session-content">
+          <img 
+            :src="appLogo"
+            class="img-responsive mb-3" 
+            width="78" 
+            height="78" 
+          />
+          <h2 class="mb-3">家計簿アプリ　House Hold へようこそ</h2>
+          <v-container fluid pt-0 grid-list-xl>
+            <div v-if="!authenticated">
+                <a href="#" @click.prevent="signinWithAuth0">Login</a>
+            </div>
+            <div v-if="authenticated">
+                <a href="#" @click.prevent="logoutWithAuth0">Logout</a>
+            </div>
+          </v-container>
+        </div>
       </div>
-      <div v-if="authenticated">
-          <a href="#" @click.prevent="logoutWithAuth0">Logout</a>
-      </div>
-      <h2>{{ authenticated }}</h2>
-      <h1>{{ msg }}</h1>
-      <h2>Before start app, you need signup or logins</h2>
-    </v-container>
+    </div>
   </div>
 </template>
-
 
 <script>
 
 import AuthService from "@/auth/AuthService";
+import AppConfig from "Constants/AppConfig";
 
 const auth = new AuthService();
 const { login, logout, authenticated, authNotifier } = auth;
@@ -31,7 +40,7 @@ export default {
     })
     return {
       authenticated,
-      msg: 'Welcome to House Hold'
+      appLogo: AppConfig.appLogo2,
     }
   },
   methods: {
@@ -66,6 +75,9 @@ a {
 }
 .hello {
     text-align: center
+}
+.pt-80{
+  padding-top:  80px;
 }
 
 </style>
