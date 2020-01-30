@@ -2,7 +2,6 @@ import Full from 'Container/Full'
 
 // dashboard components
 const Ecommerce = () => import('Views/dashboard/Ecommerce');
-const setting = () => import('Views/setting');
 
 
 export default {
@@ -17,14 +16,6 @@ export default {
             requiresAuth: true,
             title: 'message.ecommerce',
             breadcrumb: null
-         }
-      },
-      {
-         path: 'setting',
-         name: "setting",
-         components: {default: setting },
-         meta: {
-            requiresAuth: true
          }
       }
    ]
