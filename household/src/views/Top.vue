@@ -50,10 +50,6 @@ export default {
    logoutWithAuth0() {
      logout();
    }
-  },
-  mounted: function() {
-   console.log("sample")
-   console.log(process.env.VUE_APP_API)
   }
 }
 </script>
