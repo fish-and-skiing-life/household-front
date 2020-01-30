@@ -3,9 +3,6 @@
     <div class="md-layout ">
       <v-container fluid grid-list-xl class="px-0">
         <h3 class="px-3">  ユーザー管理設定</h3>
-        <div class="text-right">
-          <v-btn flat color="primary" @click="groupModalShow">グループを作成</v-btn>
-        </div>
         <v-layout row wrap>
           <app-card :fullBlock="true" colClasses="xl12 lg12 md12 sm12 xs12">
             <v-data-table :headers="headers" :items="tableData" hide-actions>
@@ -59,40 +56,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-    <v-dialog v-model="createGroupModal" max-width="600px">
-      <v-card class= "px-4">
-        <v-card-title>
-          <h3 class="text-center">グループの作成</h3>
-        </v-card-title>
-        <v-card-text>
-          <v-form v-model="form.valid" ref="form" lazy-validation>
-            <v-layout row wrap>
-              <v-flex xs12 sm4>
-                <span class=" pt-4 pr-4 d-block grey--text text-right">グループ名</span>
-              </v-flex>
-              <v-flex xs12 sm8 >
-                <v-text-field label="名前" v-model="user.name" :rules="form.industryRules" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm4>
-                <span class=" pt-4 pr-4 d-block grey--text text-right">グループトークン</span>
-              </v-flex>
-              <v-flex xs12 sm8 >
-                <v-text-field label="トークン" v-model="user.password"></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-form>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <div>
-            <v-btn flat color="error" @click="createUserModalHide">Close</v-btn>
-            <v-btn flat color="primary" :disabled="!form.valid" @click="createUser">作成する</v-btn>
-          </div>
-          <v-spacer></v-spacer>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
 
@@ -110,7 +73,6 @@ export default {
   data() {
     return {
       createUserModal: false,
-      createGroupModal: false,
       tableData: [],
       selectedPlan: {},
       headers: [
@@ -133,9 +95,6 @@ export default {
     };
   },
   methods: {
-    groupModalShow(){
-      this.createGroupModal = true
-    },
     formated_date(date){
       return moment(date).format("YYYY年MM月DD日")
     },
